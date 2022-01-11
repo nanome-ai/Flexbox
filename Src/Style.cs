@@ -8,7 +8,7 @@ namespace Flexbox
 
 
         internal Direction Direction = Direction.Inherit;
-        internal FlexDirection FlexDirection = FlexDirection.Row;
+        internal FlexDirection FlexDirection = FlexDirection.Column;
         internal Justify JustifyContent = Justify.FlexStart;
         internal Align AlignContent = Align.Stretch;
         internal Align AlignItems = Align.Stretch;
