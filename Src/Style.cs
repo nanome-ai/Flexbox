@@ -153,7 +153,7 @@ namespace Flexbox
                     return;
                 }
 
-                if (!layoutAttributeDefault.ContainsKey(attr)) throw new Exception("Try to set unknown layout style attribute [" + attr + "]");
+                if (!layoutAttributeDefault.ContainsKey(attr)) throw new KeyNotFoundException("Try to set unknown layout style attribute [" + attr + "]");
                 if (setMode)
                 {
                     var old_value = layoutAttributeWas.ContainsKey(attr) ? layoutAttributeWas[attr] : layoutAttributeDefault[attr];
@@ -258,12 +258,19 @@ namespace Flexbox
             var items = style.Split(';');
             foreach (var item in items)
             {
-                if (item.Trim() == "") continue;
-                var part = item.Trim().Split(':');
-                if (part.Length == 2)
-                    this[part[0].Trim()] = part[1].Trim();
-                else
-                    throw new System.Exception("Failed to parse style [" + item + "] in  [" + style + "]");
+                try
+                {
+                    if (item.Trim() == "") continue;
+                    var part = item.Trim().Split(':');
+                    if (part.Length == 2)
+                        this[part[0].Trim()] = part[1].Trim();
+                    else
+                        throw new System.Exception("Failed to parse style [" + item + "] in  [" + style + "]");
+                }
+                catch (KeyNotFoundException e)
+                {
+
+                }
             }
         }
 
